@@ -18,3 +18,13 @@ export * from './lib/errors/domain.errors'
 // VALUE OBJECTS
 export * from './lib/value-objects/email.vo'
 export * from './lib/value-objects/money.vo'
+
+// FACTORIES
+export * from './lib/factories/channels/transaction-channel.factory'
+
+// STRATEGIES
+export * from './lib/strategies/plan-limit/plan-limit.strategy'
+export * from './lib/strategies/intervention/intervention.strategy'
+
+// OBSERVERS
+export * from './lib/observers/transaction-event-bus'
