@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: ankane/pgvector:latest
+    container_name: aura-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: aura_user
+      POSTGRES_PASSWORD: aura_password
+      POSTGRES_DB: aura_db
+    ports:
+      # Expõe a porta 5433 na sua máquina e direciona para a 5432 do container
+      - "5433:5432"
+    volumes:
+      - aura-pgdata:/var/lib/postgresql/data
+
+volumes:
+  aura-pgdata:

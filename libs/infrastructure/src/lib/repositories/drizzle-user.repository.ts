@@ -4,6 +4,7 @@ import { IUserRepository } from '@aura/application'
 import { User, Plan, UserRole, PlanType } from '@aura/domain'
 import { users } from '../schema/users.schema'
 
+
 export class DrizzleUserRepository implements IUserRepository {
   constructor(private readonly db: PostgresJsDatabase) {}
 
