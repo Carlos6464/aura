@@ -6,6 +6,6 @@ import * as refreshTokensSchema from '../schema/refresh-tokens.schema'
 const connectionString = process.env.DATABASE_URL || 'postgresql://aura_user:aura_password@localhost:5433/aura_db'
 
 // Cria a conexão standalone
-const queryClient = postgres(connectionString)
+export const queryClient = postgres(connectionString)
 
 export const db = drizzle(queryClient, { schema: { ...usersSchema, ...refreshTokensSchema } })

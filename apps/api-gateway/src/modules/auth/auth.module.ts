@@ -3,13 +3,12 @@ import { AuthController } from './auth.controller';
 import { AUTH_TOKENS } from './auth.tokens';
 
 // Imports da Infraestrutura Real
-import { DrizzleUserRepository } from '@aura/infrastructure';
+import { DrizzleUserRepository, BcryptPasswordHasher } from '@aura/infrastructure';
 import { DRIZZLE_CONNECTION } from '../database/database.module';
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
 // Imports dos Fakes (serão substituídos aos poucos)
 import { InMemoryRefreshTokenRepository } from './in-memory/in-memory-refresh-token.repository';
-import { FakePasswordHasher } from './in-memory/fake-password-hasher';
 import { FakeTokenService } from './in-memory/fake-token-service';
 
 // Use Cases
@@ -33,7 +32,7 @@ import { LoginUseCase, RefreshTokenUseCase } from '@aura/application';
     },
     {
       provide: AUTH_TOKENS.PASSWORD_HASHER,
-      useClass: FakePasswordHasher,
+      useClass: BcryptPasswordHasher,
     },
     {
       provide: AUTH_TOKENS.TOKEN_SERVICE,
