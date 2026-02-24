@@ -3,7 +3,7 @@ import { AuthController } from './auth.controller';
 import { AUTH_TOKENS } from './auth.tokens';
 
 // Imports da Infraestrutura Real
-import { DrizzleUserRepository, BcryptPasswordHasher } from '@aura/infrastructure';
+import { DrizzleUserRepository, BcryptPasswordHasher, DrizzleRefreshTokenRepository, JwtTokenService } from '@aura/infrastructure';
 import { DRIZZLE_CONNECTION } from '../database/database.module';
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 
@@ -25,10 +25,10 @@ import { LoginUseCase, RefreshTokenUseCase } from '@aura/application';
       },
       inject: [DRIZZLE_CONNECTION],
     },
-    // 2. Os Fakes continuam normais até a hora de substituí-los
     {
       provide: AUTH_TOKENS.REFRESH_TOKEN_REPOSITORY,
-      useClass: InMemoryRefreshTokenRepository,
+      useFactory: (db: PostgresJsDatabase) => new DrizzleRefreshTokenRepository(db),
+      inject: [DRIZZLE_CONNECTION],
     },
     {
       provide: AUTH_TOKENS.PASSWORD_HASHER,
@@ -36,7 +36,13 @@ import { LoginUseCase, RefreshTokenUseCase } from '@aura/application';
     },
     {
       provide: AUTH_TOKENS.TOKEN_SERVICE,
-      useClass: FakeTokenService,
+      useFactory: () => {
+        // Pega a secret das variáveis de ambiente ou usa um fallback para dev local
+        const jwtSecret = process.env.JWT_SECRET || 'aura-super-secret-key-local-2026';
+        
+        // Passa a secret e confia nos TTLs padrão da sua classe (15m e 7d)
+        return new JwtTokenService(jwtSecret);
+      }
     },
     // 3. Os Use Cases não mudam absolutamente nada
     {
