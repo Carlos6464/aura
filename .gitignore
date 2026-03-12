@@ -1,0 +1,30 @@
+# Ambiente
+.env
+*.env.local
+
+# Claude Code — arquivos pessoais (criados automaticamente)
+.claude/settings.local.json
+.claude/projects/
+
+# Python / Django
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+
+# Node / React Native
+node_modules/
+.expo/
+dist/
+build/
+
+# Mobile
+apps/mobile/android/app/build/
+apps/mobile/.expo/
+*.apk
+*.aab
+
+# Sistema
+.DS_Store
+Thumbs.db
