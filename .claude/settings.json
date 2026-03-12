@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(docker compose *)",
+      "Bash(docker *)",
+      "Bash(python manage.py *)",
+      "Bash(celery *)",
+      "Bash(pip install *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(expo *)",
+      "Read(**)",
+      "Edit(**)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Edit(.env)",
+      "Edit(.env.*)"
+    ]
+  }
+}

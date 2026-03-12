@@ -1,30 +1,49 @@
-# Ambiente
+# ===========================
+# SEGREDOS — NUNCA versionar
+# ===========================
 .env
-*.env.local
+.env.*
+!.env.example
 
-# Claude Code — arquivos pessoais (criados automaticamente)
+# ===========================
+# CLAUDE CODE — pessoal/local
+# ===========================
 .claude/settings.local.json
-.claude/projects/
 
-# Python / Django
+# ===========================
+# PYTHON / DJANGO
+# ===========================
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 .pytest_cache/
 *.egg-info/
+.venv/
+venv/
 
-# Node / React Native
+# ===========================
+# NODE / REACT NATIVE
+# ===========================
 node_modules/
 .expo/
 dist/
 build/
 
-# Mobile
+# ===========================
+# MOBILE / ANDROID
+# ===========================
 apps/mobile/android/app/build/
+apps/mobile/android/.gradle/
 apps/mobile/.expo/
 *.apk
 *.aab
+*.keystore
+!debug.keystore
 
-# Sistema
+# ===========================
+# SISTEMA OPERACIONAL
+# ===========================
 .DS_Store
 Thumbs.db
+*.swp
